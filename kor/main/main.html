@@ -532,9 +532,6 @@
 							if ($ele.win.scrollTop() + $ele.win.height() / 2 > $('.main .section').eq(i).offset().top) {
 								$(this).addClass('active');
 							}
-							// else {
-							// 	$(this).removeClass('active');
-							// }
 						});
 
 						if ($ele.win.scrollTop() > 10) {
@@ -546,10 +543,14 @@
 				},
 			};
 
-			// visualSwiper.on('beforeInit', function () {
-			// 	console.log('스와이퍼 실행 전!');
-			// 	section_active.init();
-			// });
+			$(document).ready(function () {
+				section_active.init();
+			});
+
+			setTimeout(() => {
+				$('.main-visual').addClass('active');
+				$('.header-total').removeClass('fixed');
+			}, 3300);
 
 			function iniSwiper() {
 				var visualSwiper = new Swiper('.main-visual .swiper-container', {
@@ -594,11 +595,6 @@
 			}
 
 			let videoSlide = document.getElementById('video');
-
-			setTimeout(() => {
-				$('.main-visual').addClass('active');
-				$('.header-total').removeClass('fixed');
-			}, 3100);
 
 			setTimeout(() => {
 				iniSwiper();
