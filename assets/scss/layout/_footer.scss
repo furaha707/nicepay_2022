@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+.footer {
+	padding: rem(50) 0;
+	background: #283c75;
+	color: #ccc;
+	font-size: rem(14);
+	font-weight: 300;
+
+	.container {
+		position: relative;
+	}
+
+	&__logo {
+		text-align: center;
+		img {
+			width: rem(166);
+		}
+	}
+
+	&__info {
+		ul {
+			overflow: hidden;
+			left: -0.5em;
+			position: relative;
+			li {
+				position: relative;
+				display: inline-block;
+				padding: 0 0.5em;
+				font-weight: 500;
+				&:not(:last-child) {
+					position: relative;
+					display: inline-block;
+					padding: 0 0.5em;
+					&:before {
+						content: '';
+						right: -1px;
+						height: 0.8em;
+						top: 50%;
+						margin-top: -0.4em;
+						position: absolute;
+						border-left: 1px solid lighten(#999, 10%);
+					}
+				}
+			}
+		}
+		&.eng__info {
+			ul {
+				li {
+					@include mdq-max(lg) {
+						&:before {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 푸터 텍스트 구분선 스타일 샘플
+	&__txt {
+		position: relative;
+		overflow: hidden;
+		left: -0.5em;
+		text-align: center;
+		font-size: rem(16);
+		font-weight: 500;
+		.txt {
+			span {
+				position: relative;
+				display: inline-block;
+				padding: 0 0.5em;
+				// &:before {
+				// 	content: '';
+				// 	left: -1px;
+				// 	height: 0.8em;
+				// 	top: 50%;
+				// 	margin-top: -0.4em;
+				// 	position: absolute;
+				// 	border-left: 1px solid lighten(#999, 10%);
+				// }
+			}
+		}
+	}
+
+	&-copyright {
+		text-align: center;
+		font-weight: 500;
+	}
+
+	.created-masstige {
+		.masstige {
+			font-weight: 500;
+		}
+		&:hover {
+			color: #7d67ff;
+		}
+	}
+
+	.family-wrapper {
+		position: absolute;
+		top: 0;
+		right: 20px;
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		@include mdq-max(xl) {
+			position: relative;
+			justify-content: center;
+			right: auto;
+			margin-bottom: 30px;
+		}
+	}
+	.familysite {
+		position: relative;
+		.familyBtn {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			min-width: 210px;
+			height: 34px;
+			line-height: 34px;
+			padding: 10px 0;
+			font-size: 0.938rem;
+			font-weight: 400;
+			text-align: left;
+			color: white;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+			background: url('../images/icon/qna-down.png') no-repeat;
+			background-position: right center;
+			filter: invert(0.5) brightness(2);
+			span {
+				width: 100%;
+			}
+			&.on {
+				background: url('../images/icon/qna-up.png') no-repeat;
+				background-position: right center;
+				filter: invert(0.5) brightness(2);
+			}
+		}
+		.scrollbox {
+			position: absolute;
+			left: 0;
+			bottom: 40px;
+			width: 100%;
+			background-color: white;
+			border: 1px solid #ddd;
+			border-radius: 10px;
+			display: none;
+			z-index: 100;
+		}
+		.inner {
+			display: flex;
+			flex-direction: column;
+			padding: 20px 0;
+			height: 200px;
+			overflow-y: scroll;
+			.link {
+				padding: 0 0 0 20px;
+				font-size: rem(15);
+				font-weight: 400;
+				color: #555;
+			}
+		}
+	}
+	.familyGo {
+		width: 52px;
+		height: 34px;
+		border-radius: 17px;
+		border: solid 1.2px #ddd;
+		background-color: #ffffff00;
+		font-size: 0.938rem;
+		color: white;
+	}
+
+	.sns-wrap {
+		position: absolute;
+		top: 0;
+		left: 20px;
+		.inner {
+			display: flex;
+			gap: 9px;
+			.sns-item {
+				flex: 0 0 36px;
+				max-width: 36px;
+			}
+			img {
+				width: 36px;
+			}
+		}
+		@include mdq-max(xl) {
+			position: relative;
+			justify-content: center;
+			left: auto;
+			margin-bottom: 30px;
+			.inner {
+				justify-content: center;
+			}
+		}
+	}
+}
+
+.sub-body {
+	.footer {
+		background-color: #0a223c;
+	}
+}

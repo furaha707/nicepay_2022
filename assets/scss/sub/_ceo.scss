@@ -1,0 +1,185 @@
+@charset "UTF-8";
+
+.ceo-words {
+	.tit {
+		font-size: rem(40);
+		font-weight: bold;
+		line-height: 55px;
+		letter-spacing: -1.8px;
+		text-align: center;
+		color: #000;
+		padding-bottom: 1.4rem;
+	}
+	@include mdq-max(lg) {
+		.tit {
+			font-size: rem(36);
+			line-height: 43px;
+		}
+	}
+	@include mdq-max(sm) {
+		.tit {
+			font-size: rem(28);
+			line-height: 37px;
+		}
+	}
+	.txt {
+		font-size: rem(22);
+		font-weight: 300;
+		line-height: 34px;
+		letter-spacing: -0.88px;
+		text-align: center;
+		color: #666;
+		@include mdq-max(lg) {
+			font-size: rem(20);
+			line-height: 27px;
+		}
+		@include mdq-max(sm) {
+			line-height: 25px;
+		}
+	}
+	&.eng-words {
+		@include mdq-max(lg) {
+			.tit {
+				font-size: 2.25rem;
+				line-height: 43px;
+			}
+		}
+		@include mdq-max(sm) {
+			.tit {
+				font-size: 1.75rem;
+				line-height: 37px;
+			}
+		}
+	}
+}
+
+.ceo-profile {
+	margin-top: 7.5rem;
+	padding-top: 7.5rem;
+	border-top: 1px solid #e3e3e3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@include mdq-max(lg) {
+		margin-top: 5.5rem;
+		padding-top: 5.5rem;
+	}
+	.inner {
+		.tit {
+			font-size: rem(32);
+			font-weight: 600;
+			line-height: 34px;
+			letter-spacing: -1.28px;
+			text-align: center;
+			color: #000;
+			padding-bottom: 25px;
+			@include mdq-max(lg) {
+				font-size: rem(28);
+				line-height: 45px;
+			}
+			@include mdq-max(sm) {
+				font-size: rem(26);
+				line-height: 36px;
+			}
+		}
+		&-left {
+			flex: 1 1 auto;
+			max-width: 100%;
+		}
+		&-right {
+			flex: 0 0 100%;
+			max-width: 100%;
+			padding-top: 3rem;
+			@include mdq-max(lg) {
+				flex: 1 1 auto;
+				max-width: 100%;
+			}
+		}
+	}
+	.des-item {
+		.txt {
+			font-size: rem(20);
+			font-weight: 300;
+			line-height: 34px;
+			letter-spacing: -0.8px;
+			text-align: center;
+			color: #666;
+			@include mdq-max(sm) {
+				font-size: rem(18);
+				line-height: 25px;
+			}
+		}
+		&:first-child {
+			padding-bottom: 3rem;
+		}
+	}
+	.profile-list {
+		.profile-item {
+			display: flex;
+			gap: 20px;
+			.date {
+				min-width: 75px;
+				display: block;
+				font-family: $font-family-sub;
+				font-size: rem(20);
+				font-weight: 600;
+				line-height: 50px;
+				letter-spacing: -0.8px;
+				text-align: left;
+				color: #666;
+			}
+		}
+		.txt {
+			display: block;
+			font-size: rem(20);
+			font-weight: 300;
+			line-height: 50px;
+			letter-spacing: -0.8px;
+			text-align: left;
+			color: #666;
+			&.current {
+				color: #000;
+				font-weight: 600;
+			}
+		}
+		&.eng-list {
+			@include mdq-max(xl) {
+				.profile-item {
+					margin-bottom: 10px;
+					.date {
+						line-height: 30px;
+					}
+				}
+				.txt {
+					line-height: 30px;
+				}
+			}
+		}
+	}
+	@include mdq-max(xl) {
+		flex-direction: column;
+		gap: 4rem;
+	}
+}
+.ceo-name {
+	font-size: rem(27);
+	font-weight: 500;
+	letter-spacing: -1.1px;
+	text-align: left;
+	color: #000;
+	text-align: center;
+	margin-top: 7rem;
+	.name {
+		font-size: rem(32);
+		font-weight: 600;
+		letter-spacing: -1.28px;
+		text-align: left;
+		color: #000;
+		padding-left: 20px;
+		@include mdq-max(sm) {
+			display: block;
+			padding-left: 0;
+			text-align: center;
+		}
+	}
+}

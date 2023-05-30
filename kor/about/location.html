@@ -1,0 +1,152 @@
+<? include "../include/head.html" ?>
+<!DOCTYPE html>
+<html lang="<?=$P_lang?>">
+	<head>
+		<?
+    $P_dp1 = '1';
+    $P_dp2 = '6';
+    include "../include/meta.html" 
+    ?>
+
+		<link rel="stylesheet" href="../../assets/css/about.min.css" />
+	</head>
+
+	<body class="sub-body">
+		<? include "../include/header.html" ?>
+		<? include "../include/sub-visual.html" ?>
+
+		<main class="main sub-main" id="contents">
+			<section class="section location pt-15 pt-lg-20 pb-25 pb-lg-40">
+				<div class="container pb-10">
+					<div class="map-wrap">
+						<div id="map" class="location__map wow fadeInUp" data-wow-delay="1s" data-wow-duration="1.3s"></div>
+						<ul class="location-list">
+							<li class="location-list__item wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1s">
+								<p class="title"><span>찾아오시는길</span></p>
+								<p class="line"></p>
+								<p class="info-txt">04117 서울시 마포구 마포대로 217, 7층 나이스페이먼츠(주)</p>
+							</li>
+							<li class="location-list__item wow fadeInUp" data-wow-delay="0.7s" data-wow-duration="1s">
+								<p class="title"><span>지하철 이용시</span></p>
+								<p class="line"></p>
+								<p class="info-txt">지하철 5호선 애오개역 2번출구</p>
+							</li>
+							<li class="location-list__item wow fadeInUp" data-wow-delay="0.9s" data-wow-duration="1s">
+								<p class="title">
+									<span>연락처</span>
+								</p>
+								<p class="line"></p>
+								<p class="info-txt">1661-0808/1661-7335</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<? include "../include/links.html" ?>
+		<? include "../include/footer.html" ?>
+		<? include "../include/js.html" ?>
+
+		<!-- test 서버 키값 -->
+		<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9094a225a327650c7ca1d545a2b1ef8f&libraries=services"></script> -->
+		<!-- 로컬서버 키값 -->
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b42ce64838d3ba3c9de7f36899d7134a&libraries=services"></script>
+
+		<script>
+			{
+				var geocoder = new kakao.maps.services.Geocoder();
+
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+					mapOption = {
+						center: new kakao.maps.LatLng(37.55392936544925, 126.95651684925156), // 지도의 중심좌표
+						level: 2, // 지도의 확대 레벨
+						draggable: false,
+					};
+
+				var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+				// 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
+				var polygonPath = [new kakao.maps.LatLng(37.55392492077948, 126.95668094985395), new kakao.maps.LatLng(37.55398116864374, 126.95650550203963), new kakao.maps.LatLng(37.55380770574375, 126.95644901741524), new kakao.maps.LatLng(37.553742337432695, 126.95632456760512), new kakao.maps.LatLng(37.55339538831468, 126.95614935619363), new kakao.maps.LatLng(37.55332790255414, 126.95638988229341)];
+
+				// 지도에 표시할 다각형을 생성합니다
+				var polygon = new kakao.maps.Polygon({
+					path: polygonPath, // 그려질 다각형의 좌표 배열입니다
+					strokeWeight: 3, // 선의 두께입니다
+					strokeColor: '#f267b2', // 선의 색깔입니다
+					strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+					strokeStyle: 'solid', // 선의 스타일입니다
+					fillColor: '#f267b2', // 채우기 색깔입니다
+					fillOpacity: 0, // 채우기 불투명도 입니다
+				});
+
+				// 지도에 다각형을 표시합니다
+				polygon.setMap(map);
+
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch('서울시 마포구 마포대로 217', function (result, status) {
+					// 정상적으로 검색이 완료됐으면
+					if (status === kakao.maps.services.Status.OK) {
+						var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+						var imageSrc = '../../assets/images/icon/marker.png', // 마커이미지의 주소입니다
+							imageSize = new kakao.maps.Size(59, 75), // 마커이미지의 크기입니다
+							imageSizeM = new kakao.maps.Size(28, 37), // 마커이미지의 크기입니다
+							imageOption = {
+								offset: new kakao.maps.Point(20, 60),
+							};
+						imageOptionM = {
+							offset: new kakao.maps.Point(15, 15),
+						};
+
+						var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+						var markerImageM = new kakao.maps.MarkerImage(imageSrc, imageSizeM, imageOptionM);
+						// 결과값으로 받은 위치를 마커로 표시합니다
+
+						var width_size = window.innerWidth;
+						if (width_size <= 800) {
+							var marker = new kakao.maps.Marker({
+								map: map, // 마커를 표시할 지도
+								position: coords,
+								image: markerImageM, // 마커 이미지
+							});
+						} else {
+							var marker = new kakao.maps.Marker({
+								map: map, // 마커를 표시할 지도
+								position: coords,
+								image: markerImage, // 마커 이미지
+							});
+						}
+
+						// var changeMarkerImage = function () {
+						// 	var width_size = window.innerWidth;
+						// 	console.log(marker.image);
+						// 	if (width_size <= 800) {
+						// 	}
+						// };
+
+						// $(document).ready(function () {
+						// 	changeMarkerImage();
+						// });
+					}
+				});
+			}
+
+			function text() {
+				$('.location-list__item').each(function () {
+					var thisTop = $(this).offset().top,
+						winScr = $(window).scrollTop(),
+						winH = $(window).height(),
+						docuH = $(document).height();
+
+					if (winScr > thisTop - winH / 1.1) {
+						$(this).addClass('active');
+					}
+				});
+			}
+			$(window).scroll(function () {
+				text();
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,170 @@
+<? include "../include/head.html" ?>
+<!DOCTYPE html>
+<html lang="<?=$P_lang?>">
+	<head>
+		<?
+    $P_dp1 = '5';
+    $P_dp2 = '3';
+    include "../include/meta.html" 
+    ?>
+
+		<!-- <link rel="stylesheet" href="../../assets/css/product.css" /> -->
+	</head>
+
+	<body class="sub-body">
+		<? include "../include/header.html" ?>
+		<? include "../include/sub-visual.html" ?>
+
+		<main class="main sub-main form-main" id="contents">
+			<section class="section pt-20 pb-40">
+				<div class="container pb-20">
+					<form name="signform" id="signform" method="post" enctype="multipart/form-data" action="" autocomplete="off" onsubmit="return CheckSignform();">
+						<table class="table-form-01 type_b">
+							<tbody>
+								<tr>
+									<th>회사명 <span class="text-danger">*</span></th>
+								</tr>
+								<tr>
+									<td>
+										<input type="text" name="title" id="title" title="회사명" maxlength="200" class="input_for" placeholder="나이스페이먼츠" required="" />
+									</td>
+								</tr>
+								<tr>
+									<th>담당자명 <span class="text-danger">*</span></th>
+								</tr>
+								<tr>
+									<td>
+										<input type="text" name="uname" id="uname" title="담당자명" maxlength="50" class="input_for" placeholder="담당자명을 입력해 주세요" required="" />
+									</td>
+								</tr>
+								<tr>
+									<th>연락처 <span class="text-danger">*</span></th>
+								</tr>
+								<tr>
+									<td>
+										<input type="tel" name="utel" id="utel" class="input_for" placeholder="연락처를 입력해 주세요" onkeyup="if(isNaN(this.value)) {alert('숫자만 입력해 주세요.');this.value=''};" required="" />
+									</td>
+								</tr>
+								<tr>
+									<th>이메일 <span class="text-danger">*</span></th>
+								</tr>
+								<tr>
+									<td>
+										<input type="email" name="uemail" id="uemail" class="input_for" placeholder="이메일을 입력해 주세요" required="" />
+									</td>
+								</tr>
+								<tr>
+									<th>내용 <span class="text-danger">*</span></th>
+								</tr>
+								<tr>
+									<td>
+										<textarea name="content" id="content" rows="30" rows="5" title="문의내용" class="area_for" placeholder="내용을 입력해 주세요" required=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<label for="info303">자동입력방지코드</label>
+									</th>
+								</tr>
+								<tr>
+									<td>
+										<input type="hidden" maxlength="100" name="code_org" id="code_org" value="753035" />
+										<span class="code">753035</span>
+										<input type="text" name="imagecode" placeholder="자동입력방지 코드" id="imagecode" title="자동입력방지 코드" class="input_for" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul class="clause_list mt-15">
+							<li>
+								<h5 class="tit">이용동의</h5>
+								<h5 class="subtit">개인정보 수집 및 이용동의서</h5>
+								<div class="textarea_box_border">
+									<div class="textarea_box">내용출력</div>
+								</div>
+								<div class="agree_box mt_10">
+									<input type="checkbox" name="yark" value="1" id="yark" title="개인정보처리방침에 동의" class="mr_05" required="" />
+									<label for="yark">개인정보 수집 및 이용동의(필수) <span class="text-danger">*</span></label>
+								</div>
+							</li>
+						</ul>
+						<div class="board_btn_bx text_center mt-15">
+							<input type="submit" value="제출" class="btn-type-01 __line" />
+						</div>
+					</form>
+				</div>
+			</section>
+		</main>
+
+		<? include "../include/links.html" ?>
+		<? include "../include/footer.html" ?>
+		<? include "../include/js.html" ?>
+
+		<script>
+			var prodTabSwiper = new Swiper('.product-tab .swiper-container', {
+				loop: false,
+				slidesPerView: 'auto',
+				slidesPerGroup: 2,
+				spaceBetween: 0,
+				centeredSlides: false,
+				slideToClickedSlide: true,
+				threshold: 50,
+				breakpoints: {
+					0: {
+						slidesPerView: 'auto',
+						slidesPerGroup: 1,
+					},
+					769: {
+						slidesPerView: 'auto',
+						slidesPerGroup: 2,
+					},
+					1025: {
+						slidesPerView: 'auto',
+						slidesPerGroup: 2,
+					},
+				},
+			});
+
+			prodTabSwiper.on('click', function () {
+				var clicked = prodTabSwiper.clickedSlide;
+
+				$('.product-tab .swiper-slide').removeClass('active');
+				$(clicked).addClass('active');
+			});
+
+			var prodThumbSwiper = new Swiper('.product-thumbs-slider .swiper-container', {
+				// loop: true,
+				slidesPerView: 3,
+				spaceBetween: 10,
+				speed: 300,
+				breakpoints: {
+					768: {
+						slidesPerView: 3,
+						spaceBetween: 10,
+					},
+					1024: {
+						slidesPerView: 3,
+						spaceBetween: 10,
+					},
+				},
+				navigation: {
+					prevEl: '.product-thumbs-slider .swiper-button--prev',
+					nextEl: '.product-thumbs-slider .swiper-button--next',
+				},
+			});
+
+			var prodSwiper = new Swiper('.product-slider .swiper-container', {
+				loop: true,
+				slidesPerView: 1,
+				speed: 300,
+				thumbs: {
+					swiper: prodThumbSwiper,
+				},
+				navigation: {
+					prevEl: '.product-thumbs-slider .swiper-button--prev',
+					nextEl: '.product-thumbs-slider .swiper-button--next',
+				},
+			});
+		</script>
+	</body>
+</html>
